@@ -27,7 +27,13 @@ const create = (b) => {
 
 if (cur === 'main' || cur === 'master') {
   if (kind === 'hotfix') {
-    console.log(`在 ${cur} 上偵測到 hotfix — 從 ${cur} 建立 hotfix/${name}`);
+    console.log(`在 ${cur} 上偵測到 hotfix 意圖...`);
+    if (!branchExists('develop')) {
+      console.log(`尚未存在 develop 分支，為符合 Git Flow 結構，先從 ${cur} 建立 develop`);
+      create('develop');
+      gitLoud(['checkout', cur]); // 切回 main / master
+    }
+    console.log(`從 ${cur} 建立 hotfix/${name}`);
     create(`hotfix/${name}`);
   } else {
     if (branchExists('develop')) {
