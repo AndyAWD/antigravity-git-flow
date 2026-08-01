@@ -21,7 +21,11 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 安裝完成後，您可以在對話中直接透過語意呼叫，或是輸入以下對應的斜線指令（Slash Commands）來觸發功能：
 
-### 1. 慣例式提交 (`/git-flow-agy:commit`)
+### 1. 慣例式提交
+
+````text
+/git-flow-agy:commit
+````
 **情境**：開發告一段落，準備將變更寫入版本歷史時。
 **運作邏輯**：
 1. **全面暫存**：執行 `git add -A` 將所有變更加入暫存區。
@@ -29,7 +33,11 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 3. **分支守門員**：檢查目前所在分支。若在 `main` 開發新功能，會自動建立 `develop` 並切換至 `feature/<功能>`；若為緊急修復，則切換至 `hotfix/<問題>`。若有風險則會中斷並詢問您的意圖。
 4. **精確提交**：針對各組任務，分次 `git reset` 後精準 `git add`，並撰寫具備繁體中文描述的規範化訊息進行提交。
 
-### 2. 分支合併 (`/git-flow-agy:merge`)
+### 2. 分支合併
+
+````text
+/git-flow-agy:merge
+````
 **情境**：功能或修復開發完成，準備整併回主要分支時。
 **運作邏輯**：
 自動依據當前分支所屬類型，決定合併的目標：
@@ -38,14 +46,33 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 - **`develop` 分支**：自動切換至 `main` 並合併。
 *(若合併過程發生衝突，Agy 會立即中斷，並提示您手動解完衝突後再繼續。)*
 
-### 3. 發布 Pull Request (`/git-flow-agy:pr`)
+### 3. 發布 Pull Request
+
+````text
+/git-flow-agy:pr
+````
 **情境**：合併到主分支前，需要透過 GitHub 進行 Code Review 時。
 **運作邏輯**：
 1. **分支與環境檢查**：限制只能從 `hotfix/*` 或 `develop` 分支發起。同時檢查本機是否已安裝 GitHub CLI (`gh`) 且處於已登入狀態。
 2. **內容自動總結**：比較當前分支與目標分支的差異與近期的 commit 紀錄，自動提煉出本次 PR 的精華。
 3. **建立 PR**：透過 `gh pr create` 以繁體中文撰寫標題與描述，將變更發布至 GitHub，供團隊審閱。
 
-### 4. 遠端推播 (`/git-flow-agy:push`)
+### 4. 遠端推播
+
+````text
+/git-flow-agy:push
+````
 **情境**：需要將本地端的變更同步上傳至 GitHub 遠端儲存庫時。
 **運作邏輯**：
 偵測當前分支並執行 `git push`。若發現遠端尚未建立該分支，會自動帶上 `-u` (即 `--set-upstream`) 參數（如 `git push -u origin <branch>`），幫助您無縫設定本地與遠端的追蹤關聯。
+
+### 5. 發布 Release
+
+````text
+/git-flow-agy:release
+````
+**情境**：專案開發到一個里程碑，準備在 GitHub 上發布新版本時。
+**運作邏輯**：
+1. **版本號確認**：向您確認即將發布的版本號（Tag，例如 `v1.8.0`）。
+2. **自動 Changelog**：比對上一個版本到目前的 commit 差異，自動整理、分類並翻譯成標準化的中英文雙語發布說明（Release Notes）。
+3. **發布至 GitHub**：檢查 GitHub CLI 登入狀態後，透過 `gh release create` 自動建立 Release，包含排版精美的雙語內容。
