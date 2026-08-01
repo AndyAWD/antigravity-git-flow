@@ -41,9 +41,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 **情境**：功能或修復開發完成，準備整併回主要分支時。
 **運作邏輯**：
 自動依據當前分支所屬類型，決定合併的目標：
-- **`feature/*` 分支**：自動切換至 `develop` 並合併，加上 `--no-ff` 保留功能節點。
-- **`hotfix/*` 分支**：自動切換至 `main` 合併，隨後檢查/建立 `develop` 再次進行合併，確保兩邊同步。
-- **`develop` 分支**：自動切換至 `main` 並合併。
+- **`feature/*`、`release/*` 與 `hotfix/*` 分支**：自動切換至 `develop` 並合併，加上 `--no-ff` 保留節點。（註：因 release 與 hotfix 合併至 main 係由 PR 網頁端處理，此處僅專注於本地合併至 develop 的同步作業）
 *(若合併過程發生衝突，Agy 會自動查看雙方分支的歷史紀錄，並嘗試為您自動解決衝突後完成合併。)*
 
 ### 3. 發布 Pull Request
@@ -53,7 +51,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 ````
 **情境**：合併到主分支前，需要透過 GitHub 進行 Code Review 時。
 **運作邏輯**：
-1. **分支與環境檢查**：限制只能從 `hotfix/*` 或 `develop` 分支發起。同時檢查本機是否已安裝 GitHub CLI (`gh`) 且處於已登入狀態。
+1. **分支與環境檢查**：限制只能從 `release/*` 或 `hotfix/*` 分支發起（目標皆為 `main`）。同時檢查本機是否已安裝 GitHub CLI (`gh`) 且處於已登入狀態。
 2. **內容自動總結**：比較當前分支與目標分支的差異與近期的 commit 紀錄，自動提煉出本次 PR 的精華。
 3. **建立 PR**：透過 `gh pr create` 以繁體中文撰寫標題與描述，將變更發布至 GitHub，供團隊審閱。
 
