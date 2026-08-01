@@ -44,7 +44,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 - **`feature/*` 分支**：自動切換至 `develop` 並合併，加上 `--no-ff` 保留功能節點。
 - **`hotfix/*` 分支**：自動切換至 `main` 合併，隨後檢查/建立 `develop` 再次進行合併，確保兩邊同步。
 - **`develop` 分支**：自動切換至 `main` 並合併。
-*(若合併過程發生衝突，Agy 會立即中斷，並提示您手動解完衝突後再繼續。)*
+*(若合併過程發生衝突，Agy 會自動查看雙方分支的歷史紀錄，並嘗試為您自動解決衝突後完成合併。)*
 
 ### 3. 發布 Pull Request
 
