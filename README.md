@@ -1,41 +1,51 @@
-# conventional-commits-agy
+# git-flow-agy
 
-一個為 Antigravity (agy) 設計的外掛，讓 Agy 依據 [慣例式提交（Conventional Commits）v1.0.0 繁體中文規範](https://www.conventionalcommits.org/zh-hant/v1.0.0/) 自動產生 git commit，並整合 Git Flow 分支策略。
+一個為 Antigravity (agy) 設計的外掛，提供完整的 Git Flow 自動化工作管線。
+本外掛不僅能讓 Agy 依據 [慣例式提交（Conventional Commits）v1.0.0 繁體中文規範](https://www.conventionalcommits.org/zh-hant/v1.0.0/) 自動產生精確的 Git Commit，更補齊了分支合併、Pull Request 發布，以及推播等 Git Flow 的關鍵環節。
 
 ## 特色
-- 📝 **符合慣例式提交規範**：`<type>[scope]: <描述>` 全部按規範。
-- 🔀 **多任務自動拆分**：偵測到不相關的變更會自動分成多個 commit。
-- 🌿 **整合 Git Flow**：`main` / `develop` 禁止直接提交，自動建立 `feature/*` 或 `hotfix/*` 分支。
-- 🤖 **Agy 專屬身分**：自動將 Author 與 Committer 設定為 `Google Antigravity`，保留 AI 協作痕跡。
+- 📝 **符合慣例式提交規範**：確保 `<type>[scope]: <描述>` 格式統一，且描述一律採用繁體中文。
+- 🔀 **多任務自動拆分**：偵測到不相關的變更時，會聰明地將其拆分為多個獨立 Commit。
+- 🌿 **自動化的 Git Flow**：`main` / `develop` 禁止直接提交，強制或自動幫您建立 `feature/*` 或 `hotfix/*` 分支。
+- 🤖 **Agy 專屬身分**：所有自動建立的 Commit，其 Author 皆為 `Google Antigravity`，清楚區分人工與 AI 協作痕跡。
 
 ## 安裝
 
 透過 Agy CLI 安裝本外掛：
 
 ```bash
-agy plugin install https://github.com/AndyAWD/conventional-commits-agy
+agy plugin install https://github.com/AndyAWD/git-flow-agy
 ```
 
-## 使用方式
+## 核心技能 (Skills)
 
-在 Agy 終端機中，執行以下指令，或直接在對話中說「幫我 commit」、「整理提交」、「拆 commit」：
+安裝完成後，您可以在對話中直接透過語意呼叫，或是輸入以下對應的斜線指令（Slash Commands）來觸發功能：
 
-```bash
-/conventional-commits-agy:commit
-```
+### 1. 慣例式提交 (`/git-flow-agy:commit`)
+**情境**：開發告一段落，準備將變更寫入版本歷史時。
+**運作邏輯**：
+1. **全面暫存**：執行 `git add -A` 將所有變更加入暫存區。
+2. **分析與拆分**：分析當前差異（diff），若包含多個獨立任務，會自動將其拆分為多個邏輯群組。
+3. **分支守門員**：檢查目前所在分支。若在 `main` 開發新功能，會自動建立 `develop` 並切換至 `feature/<功能>`；若為緊急修復，則切換至 `hotfix/<問題>`。若有風險則會中斷並詢問您的意圖。
+4. **精確提交**：針對各組任務，分次 `git reset` 後精準 `git add`，並撰寫具備繁體中文描述的規範化訊息進行提交。
 
-## 運作原理與執行流程
+### 2. 分支合併 (`/git-flow-agy:merge`)
+**情境**：功能或修復開發完成，準備整併回主要分支時。
+**運作邏輯**：
+自動依據當前分支所屬類型，決定合併的目標：
+- **`feature/*` 分支**：自動切換至 `develop` 並合併，加上 `--no-ff` 保留功能節點。
+- **`hotfix/*` 分支**：自動切換至 `main` 合併，隨後檢查/建立 `develop` 再次進行合併，確保兩邊同步。
+- **`develop` 分支**：自動切換至 `main` 並合併。
+*(若合併過程發生衝突，Agy 會立即中斷，並提示您手動解完衝突後再繼續。)*
 
-當 Agy 觸發本外掛的提交指令時，將會嚴格遵守以下七個步驟的自動化流程：
+### 3. 發布 Pull Request (`/git-flow-agy:pr`)
+**情境**：合併到主分支前，需要透過 GitHub 進行 Code Review 時。
+**運作邏輯**：
+1. **分支與環境檢查**：限制只能從 `hotfix/*` 或 `develop` 分支發起。同時檢查本機是否已安裝 GitHub CLI (`gh`) 且處於已登入狀態。
+2. **內容自動總結**：比較當前分支與目標分支的差異與近期的 commit 紀錄，自動提煉出本次 PR 的精華。
+3. **建立 PR**：透過 `gh pr create` 以繁體中文撰寫標題與描述，將變更發布至 GitHub，供團隊審閱。
 
-1. **全面暫存變更**：執行 `git add -A` 將所有工作區變更加入暫存區。
-2. **分析與蒐集資訊**：呼叫內部腳本 `scripts/analyze.js`，獲取當前分支狀態與完整的變更差異（diff）資訊。
-3. **智慧型任務拆分**：若偵測到您的變更包含多個獨立任務（例如：同時新增了功能與修復了無關的錯誤），Agy 會根據差異內容自動將其拆分為多個邏輯群組。
-4. **Git Flow 分支守門員（Branch Guard）**：
-   - 呼叫 `scripts/branch-guard.js` 檢查目前分支是否合規。
-   - 若在 `main` 分支開發新功能，會自動建立 `develop` 與對應的 `feature/<分支名稱>` 分支。
-   - 若為緊急修復（hotfix），則直接從 `main` 建立 `hotfix/<分支名稱>` 分支。
-   - 若偵測到潛在風險（例如在錯誤分支上操作），Agy 會強制中斷流程，並透過對話方塊（Interactive Dialog）向您詢問、確認意圖，絕不擅自執行危險操作。
-5. **決定類型與範圍**：針對每一組拆分出來的任務，精準定義符合慣例的 `type`（如 feat、fix、docs 等）與 `scope`。
-6. **撰寫標準化訊息**：以全繁體中文撰寫符合 v1.0.0 規範的 description，並視複雜度補充詳細的 body 或 footer。
-7. **精確提交**：針對每一組任務，重新執行 `git reset` 清空暫存，接著僅針對該任務的檔案執行精準的 `git add`，最後呼叫 `scripts/commit.js` 完成提交。所有產生的 commit，其 Author 與 Committer 皆會被強制設為 `Google Antigravity <google-antigravity@users.noreply.github.com>`，以符合專案規範。
+### 4. 遠端推播 (`/git-flow-agy:push`)
+**情境**：需要將本地端的變更同步上傳至 GitHub 遠端儲存庫時。
+**運作邏輯**：
+偵測當前分支並執行 `git push`。若發現遠端尚未建立該分支，會自動帶上 `-u` (即 `--set-upstream`) 參數（如 `git push -u origin <branch>`），幫助您無縫設定本地與遠端的追蹤關聯。
