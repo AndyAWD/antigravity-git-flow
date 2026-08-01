@@ -13,8 +13,8 @@ execFileSync('git', ['commit', '-m', msg], {
   env: {
     ...process.env,
     GIT_AUTHOR_NAME: 'Google Antigravity',
-    GIT_AUTHOR_EMAIL: 'google-antigravity@users.noreply.github.com',
+    GIT_AUTHOR_EMAIL: '242056456+google-antigravity@users.noreply.github.com',
     GIT_COMMITTER_NAME: 'Google Antigravity',
-    GIT_COMMITTER_EMAIL: 'google-antigravity@users.noreply.github.com',
+    GIT_COMMITTER_EMAIL: '242056456+google-antigravity@users.noreply.github.com',
   },
 });
