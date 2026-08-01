@@ -1,5 +1,5 @@
 ---
-name: conventional-commits-agy:commit
+name: commit
 description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前 workspace 變更，若包含多個獨立任務會自動拆分成多個 commit。整合 Git Flow 分支策略。所有 commit 的 author 與 committer 都將強制設為 Google Antigravity。當使用者輸入 /conventional-commits-agy:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
 ---
 
