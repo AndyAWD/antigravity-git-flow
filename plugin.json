@@ -1,0 +1,5 @@
+{
+  "name": "conventional-commits-agy",
+  "version": "0.1.0",
+  "description": "Antigravity plugin for generating Conventional Commits with Git Flow branching."
+}
