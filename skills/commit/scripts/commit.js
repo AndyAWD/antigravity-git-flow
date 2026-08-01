@@ -7,14 +7,8 @@ if (!msg) {
   process.exit(1);
 }
 
-// 根據使用者全域規則，強制指定 Author 與 Committer 為 Google Antigravity
-execFileSync('git', ['commit', '-m', msg], {
+// 根據使用者全域規則，在 Commit 訊息末端簽署共同作者
+const coAuthor = '\n\nCo-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>';
+execFileSync('git', ['commit', '-m', msg + coAuthor], {
   stdio: 'inherit',
-  env: {
-    ...process.env,
-    GIT_AUTHOR_NAME: 'Google Antigravity',
-    GIT_AUTHOR_EMAIL: '242056456+google-antigravity@users.noreply.github.com',
-    GIT_COMMITTER_NAME: 'Google Antigravity',
-    GIT_COMMITTER_EMAIL: '242056456+google-antigravity@users.noreply.github.com',
-  },
 });
