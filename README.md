@@ -64,10 +64,22 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 **運作邏輯**：
 偵測當前分支並執行 `git push`。若發現遠端尚未建立該分支，會自動帶上 `-u` (即 `--set-upstream`) 參數（如 `git push -u origin <branch>`），幫助您無縫設定本地與遠端的追蹤關聯。
 
-### 5. 發布 Release
+### 5. 建立發布分支 (Start Release)
 
 ````text
-/git-flow-agy:release
+/git-flow-agy:release [vX.Y.Z]
+````
+**情境**：開發階段告一段落，準備從 `develop` 開啟發布測試週期時。
+**運作邏輯**：
+1. **版本推算**：分析 `develop` 上未發布的變更，推算下一個合理的 SemVer 版號（或採用手動指定的版號）。
+2. **分支建立**：自動切換並建立 `release/<版號>` 分支。
+3. **跨平台智能版號更新**：AI 會發揮跨語言優勢，自動尋找專案中的版號定義檔（如 Node.js 的 `package.json`、Android 的 `build.gradle`、Python 的 `pyproject.toml` 等）並將其更新為新版號。
+4. **自動提交**：自動建立 `chore(release): bump version to <版號>` 提交，並附上 `Co-authored-by` 簽名。
+
+### 6. 建立 GitHub Release
+
+````text
+/git-flow-agy:github-release
 ````
 **情境**：專案開發到一個里程碑，準備在 GitHub 上發布新版本時。
 **運作邏輯**：
@@ -75,7 +87,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 2. **自動 Changelog**：比對上一個版本到目前的 commit 差異，自動整理、分類並翻譯成標準化的中英文雙語發布說明（Release Notes）。
 3. **發布至 GitHub**：檢查 GitHub CLI 登入狀態後，透過 `gh release create` 自動建立 Release，包含排版精美的雙語內容。
 
-### 6. 自動與手動版本標記
+### 7. 自動與手動版本標記
 
 ````text
 /git-flow-agy:tag [vX.Y.Z]
@@ -87,3 +99,14 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 - **自動模式**：若未指定版號，AI 會自動分析未打上標籤的合併節點。回溯合併分支的歷史，並嚴格遵循 [語意化版本 2.0.0](https://semver.org/lang/zh-TW/) 規範判斷應該增加 MAJOR、MINOR 還是 PATCH。
 - **多節點補齊**：當發現多筆遺漏標記的合併節點時，會主動使用對話框詢問您要標記最新節點還是全部補齊。
 - **格式保證**：所有的版本號產出皆會統一以小寫 `v` 開頭（例如 `v2.0.0`）。
+
+### 8. 專案初始化 (Init)
+
+````text
+/git-flow-agy:init
+````
+**情境**：建立了一個全新專案，需要一鍵架設 Git Flow 基礎架構時。
+**運作邏輯**：
+- 自動檢查或執行 `git init`。
+- 建立初始的空 Commit (或 `README.md`)。
+- 自動建立標準的 `main` 與 `develop` 雙軌分支，並為您停留在 `develop` 準備開始開發。
