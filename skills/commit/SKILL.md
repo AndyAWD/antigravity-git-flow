@@ -40,11 +40,12 @@ Step 6: 撰寫符合規範的訊息（**type 與 scope 必須保持英文，但 
 Step 7: 對每組任務，執行 `git reset` -> 精準 `git add` -> 呼叫 `scripts/commit.js "<訊息>"`
 
 ## 規範與限制
-- **Author/Committer**：依使用者全域規則，這兩者都將被 `commit.js` 強制覆寫為 `Google Antigravity`。
+- **Author/Committer**：依使用者全域規則，請勿竄改 Author 身分，而必須在 Commit 訊息最下方加上 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>` 簽名。
 - **Commit 訊息格式**：
   ```
   <type>[optional scope]: <繁體中文描述 (description)>
 
   [optional body]
+
+  Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>
   ```
-  不需要加 `Co-Authored-By`，因為 Author 已經是 Antigravity 本身。
