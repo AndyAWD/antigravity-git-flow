@@ -47,7 +47,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 ### 3. 發布 Pull Request
 
 ````text
-/git-flow-agy:pr
+/git-flow-agy:github-pr
 ````
 **情境**：合併到主分支前，需要透過 GitHub 進行 Code Review 時。
 **運作邏輯**：

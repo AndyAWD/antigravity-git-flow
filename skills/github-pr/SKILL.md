@@ -1,11 +1,11 @@
 ---
-name: pr
-description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支執行，且 PR 內容須為繁體中文。當使用者輸入 /git-flow-agy:pr 時觸發。
+name: github-pr
+description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支執行，且 PR 內容須為繁體中文。當使用者輸入 /git-flow-agy:github-pr 時觸發。
 ---
 # Pull Request
 
 ## 何時使用此 Skill
-- 當使用者輸入 `/git-flow-agy:pr`
+- 當使用者輸入 `/git-flow-agy:github-pr`
 
 ## 執行流程與限制
 1. **取得目前分支名稱**：執行 `git branch --show-current`。
@@ -21,4 +21,4 @@ description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支
      - 執行指令：`gh pr create --title "<繁體中文標題>" --body "<繁體中文描述>" --base <目標分支>`，自動建立 PR。
    - **若未安裝或未登入 (情境 B)**：
      - 停止後續所有動作。
-     - 以明顯的提示訊息告知使用者：「請先安裝 GitHub CLI (gh) 並執行 \`gh auth login\` 完成登入後，再重新輸入 \`/git-flow-agy:pr\` 繼續執行。」
+     - 以明顯的提示訊息告知使用者：「請先安裝 GitHub CLI (gh) 並執行 \`gh auth login\` 完成登入後，再重新輸入 \`/git-flow-agy:github-pr\` 繼續執行。」
