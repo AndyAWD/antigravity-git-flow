@@ -73,7 +73,7 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
   "questions": [
     {
       "question": "目前在 main 分支，請問您要建立 hotfix 還是 feature 分支？",
-      "options": ["(Recommended) feature", "hotfix", "取消"],
+      "options": ["我要建立 feature 分支", "我要建立 hotfix 分支", "取消目前操作"],
       "is_multi_select": false
     }
   ],
@@ -87,7 +87,7 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
   "questions": [
     {
       "question": "目前在 main，但 develop 分支已存在。可能在錯誤分支，是否要中斷並手動切換？",
-      "options": ["(Recommended) 是，中斷流程", "否，繼續執行"],
+      "options": ["是，中斷流程", "否，繼續執行"],
       "is_multi_select": false
     }
   ],
@@ -97,14 +97,19 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
 ```
 
 ## 執行流程（8 步驟）
+*重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `commit` 技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/analyze.js`）。絕不可使用相對路徑。*
+
 Step 1: 確認當前分支，若在 `main` 或 `master`，則執行上述 `ask_question` 流程。
-Step 2: 執行 `git add -A`
-Step 3: 呼叫本技能目錄下 `scripts/analyze.js` 蒐集資訊（透過 run_command 執行，請確保路徑正確）
+Step 2: 執行 `git ls-files --others --exclude-standard` 檢查是否有「未追蹤的新檔案 (Untracked files)」。
+        - 若有新檔案，**必須暫停**並列出檔案清單給使用者看，使用 `ask_question` 詢問：「發現以下未追蹤的新檔案，請確認是否安全並加入版本控制？」
+        - 選項提供：「(Recommended) 這些檔案都安全，全部加入」、「裡面有敏感檔案，我要加入 .gitignore」、「這次先不提交這些新檔案」。
+        - 根據選擇進行對應處理（若選不提交，則改用 `git add -u` 僅更新舊檔案）。若沒有新檔案，則直接執行 `git add -A`。
+Step 3: 透過 `run_command` 執行本技能目錄下 `scripts/analyze.js` 蒐集資訊（請務必使用上述推導出的絕對路徑）。
 Step 4: 依 diff 內容分組任務（自動拆分）
-Step 5: 呼叫本技能目錄下 `scripts/branch-guard.js <feature|hotfix> <branch-name>` 檢查分支
+Step 5: 執行本技能目錄下 `scripts/branch-guard.js <feature|hotfix> <branch-name>` 檢查分支（請務必使用絕對路徑）。
 Step 6: 決定每組的 type/scope
 Step 7: 撰寫符合規範的訊息（**type 與 scope 必須保持英文，但 description 必須使用繁體中文**，例如：`feat(auth): 新增登入功能`，可選的 body/footer 亦需為繁體中文）
-Step 8: 對每組任務，執行 `git reset` -> 精準 `git add` -> 呼叫 `scripts/commit.js "<訊息>"`
+Step 8: 對每組任務，執行 `git reset` -> 精準 `git add` -> 執行 `scripts/commit.js "<訊息>"`（請務必使用絕對路徑）。
 
 ## 規範與限制
 - **Author/Committer**：依使用者全域規則，請勿竄改 Author 身分，而必須在 Commit 訊息最下方加上 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>` 簽名。

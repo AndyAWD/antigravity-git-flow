@@ -32,7 +32,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 或 master 分支上未標
     "questions": [
       {
         "question": "發現多個未標籤的合併節點，請問要標籤哪種範圍？",
-        "options": ["(Recommended) 僅把最近的一次合併節點打上版本號 tag", "全部的合併節點都要打上 tag"],
+        "options": ["僅把最近的一次合併節點打上版本號", "全部的合併節點都要打上標籤"],
         "is_multi_select": false
       }
     ],
@@ -53,4 +53,4 @@ description: 依據 SemVer 2.0.0 規範，分析 main 或 master 分支上未標
 
 ### Step 6: 執行標記與說明
 - 對於每個確定好的新版號，執行 `git tag <版號> <合併節點的 hash>`。
-- 執行完成後，向使用者總結打上了哪些 Tag，並提醒他們可以使用 `git push --tags` 將標籤推播至遠端。
+- 執行完成後，向使用者總結打上了哪些 Tag，並請從您的 `<skills>` 列表中找出 `push` 技能，讀取並執行其邏輯，以將標籤同步至遠端。
