@@ -1,6 +1,6 @@
 ---
 name: init
-description: 一鍵為全新專案搭建 Git Flow 標準的 main 與 develop 雙軌分支架構。當使用者輸入 /git-flow-agy:init 時觸發。
+description: 一鍵為全新專案搭建 Git Flow 標準的 main 與 develop 雙軌分支架構。當使用者輸入 /antigravity-git-flow:init 時觸發。
 ---
 
 # Git Flow 專案初始化 (Init)
@@ -8,7 +8,7 @@ description: 一鍵為全新專案搭建 Git Flow 標準的 main 與 develop 雙
 本技能旨在為新的 Git 儲存庫建立 Git Flow 的基礎雙軌分支。
 
 ## 觸發時機
-- 當使用者輸入 `/git-flow-agy:init` 或是要求「初始化 Git Flow」、「建立 main 和 develop」時。
+- 當使用者輸入 `/antigravity-git-flow:init` 或是要求「初始化 Git Flow」、「建立 main 和 develop」時。
 
 ## 執行流程
 

@@ -1,11 +1,11 @@
 ---
 name: push
-description: 執行 git push 將本地變更推送到遠端。當使用者輸入 /git-flow-agy:push 時觸發。
+description: 執行 git push 將本地變更推送到遠端。當使用者輸入 /antigravity-git-flow:push 時觸發。
 ---
 # Push
 
 ## 何時使用此 Skill
-- 當使用者輸入 `/git-flow-agy:push`
+- 當使用者輸入 `/antigravity-git-flow:push`
 
 ## 執行流程
 1. 直接透過 `run_command` 執行 `git push -u origin HEAD --follow-tags`。

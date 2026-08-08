@@ -1,6 +1,6 @@
 ---
 name: tag
-description: 依據 SemVer 2.0.0 規範，分析 main 或 master 分支上未標籤的合併節點，自動判斷版號並打上 vX.Y.Z 格式的 Tag。支援手動指定版號。若不在主分支則拒絕執行。當發現多個未標籤合併節點時，會詢問使用者範圍。當使用者輸入 /git-flow-agy:tag 時觸發。
+description: 依據 SemVer 2.0.0 規範，分析 main 或 master 分支上未標籤的合併節點，自動判斷版號並打上 vX.Y.Z 格式的 Tag。支援手動指定版號。若不在主分支則拒絕執行。當發現多個未標籤合併節點時，會詢問使用者範圍。當使用者輸入 /antigravity-git-flow:tag 時觸發。
 ---
 
 # Git Flow Tag 自動版號標記 (SemVer 2.0.0)
@@ -8,7 +8,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 或 master 分支上未標
 本技能旨在為 `main` (或 `master`) 分支的合併節點打上版本號 Tag。
 
 ## 觸發時機
-- 當使用者輸入 `/git-flow-agy:tag` 或要求「打 tag」、「自動判斷版號」時。
+- 當使用者輸入 `/antigravity-git-flow:tag` 或要求「打 tag」、「自動判斷版號」時。
 
 ## 執行流程（嚴格依序執行）
 
@@ -17,7 +17,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 或 master 分支上未標
 - 如果當前分支**不是** `main` 或 `master`，請**立即中斷流程**，並告訴使用者：「標記版本號必須在 `main` 或 `master` 分支上執行，請先切換分支。」
 
 ### Step 2: 檢查手動指定版號 (Manual Override)
-- 如果使用者在呼叫技能時有明確提供版號（例如：`/git-flow-agy:tag v1.2.3` 或「幫我打 tag v1.2.3」）。
+- 如果使用者在呼叫技能時有明確提供版號（例如：`/antigravity-git-flow:tag v1.2.3` 或「幫我打 tag v1.2.3」）。
 - 請直接跳過後續的 SemVer 分析，使用指令 `git tag <手動版號>` 在當前最新的節點打上標籤，並提示使用者可推播 (`git push --tags`)，然後結束流程。
 
 ### Step 3: 找出未標籤的合併節點 (僅限自動推算模式)

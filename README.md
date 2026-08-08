@@ -1,4 +1,4 @@
-# git-flow-agy
+# antigravity-git-flow
 
 一個專為 **Google Antigravity (AGY)** 設計的外掛（Plugin），提供完整的 Git Flow 自動化工作管線。
 本外掛全面支援 Antigravity 的三大核心平台：**Antigravity CLI (`agy`)**、**Antigravity IDE** 以及 **Antigravity 2.0**。
@@ -20,7 +20,7 @@
 ### 1. Antigravity CLI (`agy`)
 透過 CLI 指令一鍵全域安裝：
 ```bash
-agy plugin install https://github.com/AndyAWD/git-flow-agy
+agy plugin install https://github.com/AndyAWD/antigravity-git-flow
 ```
 
 ### 2. Antigravity 2.0
@@ -36,7 +36,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 1. 智慧導航 (Auto Next)
 ```text
-/git-flow-agy:auto-next
+/antigravity-git-flow:auto-next
 ```
 **情境**：不知下一步該做什麼，或完全不懂 Git，想要 AI 自動幫您判斷與推進。
 **運作邏輯**：
@@ -44,7 +44,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 2. 慣例式提交
 ```text
-/git-flow-agy:commit
+/antigravity-git-flow:commit
 ```
 **情境**：開發告一段落，準備將變更寫入版本歷史時。
 **運作邏輯**：
@@ -55,7 +55,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 3. 分支合併
 ```text
-/git-flow-agy:merge
+/antigravity-git-flow:merge
 ```
 **情境**：功能或修復開發完成，準備整併回主要分支時。
 **運作邏輯**：
@@ -65,7 +65,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 4. 發布 Pull Request
 ```text
-/git-flow-agy:github-pr
+/antigravity-git-flow:github-pr
 ```
 **情境**：合併到主分支前，需要透過 GitHub 進行 Code Review 時。
 **運作邏輯**：
@@ -75,7 +75,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 5. 遠端推播
 ```text
-/git-flow-agy:push
+/antigravity-git-flow:push
 ```
 **情境**：需要將本地端的變更同步上傳至 GitHub 遠端儲存庫時。
 **運作邏輯**：
@@ -83,7 +83,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 6. 建立發布分支 (Start Release)
 ```text
-/git-flow-agy:release [vX.Y.Z]
+/antigravity-git-flow:release [vX.Y.Z]
 ```
 **情境**：開發階段告一段落，準備從 `develop` 開啟發布測試週期時。
 **運作邏輯**：
@@ -94,7 +94,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 7. 建立 GitHub Release
 ```text
-/git-flow-agy:github-release
+/antigravity-git-flow:github-release
 ```
 **情境**：專案開發到一個里程碑，準備在 GitHub 上發布新版本時。
 **運作邏輯**：
@@ -104,7 +104,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 8. 自動與手動版本標記
 ```text
-/git-flow-agy:tag [vX.Y.Z]
+/antigravity-git-flow:tag [vX.Y.Z]
 ```
 **情境**：在主要分支完成發布，需要依照規範打上版號標記時。
 **運作邏輯**：
@@ -113,7 +113,7 @@ agy plugin install https://github.com/AndyAWD/git-flow-agy
 
 ### 9. 專案初始化 (Init)
 ```text
-/git-flow-agy:init
+/antigravity-git-flow:init
 ```
 **情境**：建立了一個全新專案，需要一鍵架設 Git Flow 基礎架構時。
 **運作邏輯**：

@@ -1,6 +1,6 @@
 ---
 name: commit
-description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前 workspace 變更，若包含多個獨立任務會自動拆分成多個 commit。整合 Git Flow 分支策略。所有 commit 的 author 與 committer 都將強制設為 Google Antigravity。當使用者輸入 /git-flow-agy:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
+description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前 workspace 變更，若包含多個獨立任務會自動拆分成多個 commit。整合 Git Flow 分支策略。所有 commit 的 author 與 committer 都將強制設為 Google Antigravity。當使用者輸入 /antigravity-git-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
 ---
 
 # Conventional Commits with Git Flow for Antigravity
@@ -55,7 +55,7 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
    - 也可以在 footer 開頭標註 `BREAKING CHANGE: <繁體中文描述>`。
 
 ## 何時使用此 Skill
-- 當使用者輸入 `/git-flow-agy:commit`
+- 當使用者輸入 `/antigravity-git-flow:commit`
 - 「幫我 commit」「幫我提交」「commit 一下」
 - 「整理提交」「拆 commit」「分成幾個 commit」
 - 「conventional commit」「按規範提交」

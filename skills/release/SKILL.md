@@ -1,6 +1,6 @@
 ---
 name: release
-description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備 AI 跨平台智能版號更新能力（支援 package.json, build.gradle 等多種格式）。當使用者輸入 /git-flow-agy:release 時觸發。
+description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備 AI 跨平台智能版號更新能力（支援 package.json, build.gradle 等多種格式）。當使用者輸入 /antigravity-git-flow:release 時觸發。
 ---
 
 # Git Flow 建立發布分支 (Start Release)
@@ -8,7 +8,7 @@ description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備
 本技能旨在為 Git Flow 的發布階段開啟全新的 `release` 分支，並會透過 AI 尋找專案中的版號檔案，自動將其更新。
 
 ## 觸發時機
-- 當使用者輸入 `/git-flow-agy:release [vX.Y.Z]` 或要求「開啟發布分支」、「準備 release」時。
+- 當使用者輸入 `/antigravity-git-flow:release [vX.Y.Z]` 或要求「開啟發布分支」、「準備 release」時。
 
 ## 執行流程（嚴格依序執行）
 
@@ -17,7 +17,7 @@ description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備
 - 執行 `git pull origin develop` 確保分支處於最新狀態。
 
 ### Step 2: 判斷與確認版號
-- 若使用者在指令中指定了版號（如 `/git-flow-agy:release v1.2.0`），則使用該版號。
+- 若使用者在指令中指定了版號（如 `/antigravity-git-flow:release v1.2.0`），則使用該版號。
 - 若無指定，請使用 `git log` 分析自上一個 Tag 以來的新功能與修復，推算下一個合理的 SemVer (vX.Y.Z) 版號。
 
 ### Step 3: 建立 Release 分支

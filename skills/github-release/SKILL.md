@@ -1,11 +1,11 @@
 ---
 name: github-release
-description: 建立 GitHub Release。自動擷取 commit 紀錄產生中英文雙語 Changelog。當使用者輸入 /git-flow-agy:github-release 時觸發。
+description: 建立 GitHub Release。自動擷取 commit 紀錄產生中英文雙語 Changelog。當使用者輸入 /antigravity-git-flow:github-release 時觸發。
 ---
 # Release
 
 ## 何時使用此 Skill
-- 當使用者輸入 `/git-flow-agy:release`
+- 當使用者輸入 `/antigravity-git-flow:github-release`
 - 提及「幫我建立 release」、「發布版本」等字眼時。
 
 ## 執行流程與限制

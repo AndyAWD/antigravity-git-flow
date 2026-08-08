@@ -1,11 +1,11 @@
 ---
 name: merge
-description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /git-flow-agy:merge 時觸發。
+description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /antigravity-git-flow:merge 時觸發。
 ---
 # Merge (Git Flow)
 
 ## 何時使用此 Skill
-- 當使用者輸入 `/git-flow-agy:merge`
+- 當使用者輸入 `/antigravity-git-flow:merge`
 
 ## 執行流程
 1. **偵測主分支**：執行 `git branch -l main` 或類似指令檢查 `main` 分支是否存在。若存在則主分支為 `main`，若不存在則預設為 `master`。
