@@ -5,7 +5,54 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
 
 # Conventional Commits with Git Flow for Antigravity
 
-依照 [慣例式提交 v1.0.0](https://www.conventionalcommits.org/zh-hant/v1.0.0/) 規範產生 commit，並整合 Git Flow 分支策略。
+依照慣例式提交 (Conventional Commits) 規範產生 commit，並整合 Git Flow 分支策略。
+
+### 慣例式提交規則與細節 (Conventional Commits Specification)
+
+1. **Commit 訊息整體結構**：
+   ```text
+   <type>[optional scope]: <description>
+   
+   [optional body]
+   
+   [optional footer(s)]
+   ```
+   - `<type>`、`<scope>`、與 `<description>` 所在的行稱為「標題行 (Header)」。
+   - 標題行與 body 之間**必須**留有一個空白行。
+   - body 與 footer 之間**必須**留有一個空白行。
+
+2. **Type (類型)**，必須為以下之一（全部小寫）：
+   - `feat`: 新增功能 (feature)
+   - `fix`: 修復錯誤 (bug fix)
+   - `docs`: 僅修改文件 (documentation)
+   - `style`: 程式碼風格調整，不影響程式碼運行 (如空格、縮排、缺少分號等)
+   - `refactor`: 重構程式碼 (既非新增功能也非修復錯誤)
+   - `perf`: 改善效能 (performance)
+   - `test`: 新增或修改測試 (test)
+   - `build`: 影響建置系統或外部依賴的變更 (如 npm, webpack 等)
+   - `ci`: 修改持續整合 (CI) 的設定檔或腳本
+   - `chore`: 其他雜項工作，未修改原始碼或測試檔 (如更新 .gitignore)
+   - `revert`: 撤銷先前的 commit，body 中應註明 `This reverts commit <hash>.`
+
+3. **Scope (範圍)**：可選。用括號包住，提供上下文資訊（例如模組或套件名稱），如 `feat(api):`。應保持簡短且使用英文小寫。
+
+4. **Description (描述)**：
+   - 必須緊接在 `type/scope` 的冒號與一個空白之後。
+   - 依據本技能規範，必須使用**繁體中文**（如 `新增登入 API`）。
+   - 標題行總長度建議**不超過 72 個字元**。
+
+5. **Body (主體)**：可選。
+   - 說明**為什麼 (Why)** 要進行這些變更，或變更了哪些具體行為，而非只是描述程式碼如何修改 (How)。
+   - 若有多段落，段落之間需以空白行分隔。
+   - 依據本技能規範，必須使用**繁體中文**。
+
+6. **Footer (結尾)**：可選。
+   - 用於標註關聯的 Issue ID（如 `Refs: #123`, `Closes: #456`）。
+   - 用於放置 `Co-authored-by` 等簽名（請參見下方的規範與限制）。
+
+7. **重大變更 (Breaking Changes)**：
+   - 若變更會破壞向後相容性，必須在 `type` 或 `scope` 後方加上驚嘆號 `!`（如 `feat!:` 或 `feat(api)!:`）。
+   - 也可以在 footer 開頭標註 `BREAKING CHANGE: <繁體中文描述>`。
 
 ## 何時使用此 Skill
 - 當使用者輸入 `/git-flow-agy:commit`
