@@ -12,9 +12,11 @@ description: 依據 SemVer 2.0.0 規範，分析 main 或 master 分支上未標
 
 ## 執行流程（嚴格依序執行）
 
-### Step 1: 防呆機制 (Branch Guard)
+### Step 1: 防呆機制 (Branch Guard) 與標籤同步
+- 若專案設定有遠端儲存庫（`git remote`），先執行 `git fetch --all --tags --prune` 確保本機取得遠端所有的標籤 (Tags) 與最新的提交歷史。
 - 首先執行 `git branch --show-current` 檢查當前分支。
 - 如果當前分支**不是** `main` 或 `master`，請**立即中斷流程**，並告訴使用者：「標記版本號必須在 `main` 或 `master` 分支上執行，請先切換分支。」
+- 若主分支落後遠端（Behind > 0），請先執行 `git pull --ff-only`（或 `git pull`）確保本地主分支為最新狀態。
 
 ### Step 2: 檢查手動指定版號 (Manual Override)
 - 如果使用者在呼叫技能時有明確提供版號（例如：`/antigravity-git-flow:tag v1.2.3` 或「幫我打 tag v1.2.3」）。

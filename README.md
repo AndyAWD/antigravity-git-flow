@@ -129,7 +129,8 @@ agy plugin install https://github.com/AndyAWD/antigravity-git-flow
 ```
 **情境**：需要將本地端的變更同步上傳至 GitHub 遠端儲存庫時。
 **運作邏輯**：
-偵測當前分支並執行 `git push`。若發現遠端尚未建立該分支，會自動帶上 `-u` (即 `--set-upstream`) 參數，幫助您無縫設定本地與遠端的追蹤關聯。
+推送前自動執行 `git fetch` 檢查遠端狀態。若本地落後遠端會先提醒並協助同步；確認無落後後執行 `git push`。若發現遠端尚未建立該分支，會自動帶上 `-u` (即 `--set-upstream`) 參數，幫助您無縫設定本地與遠端的追蹤關聯。
+
 
 ### 6. 建立發布分支 (Start Release)
 ```text

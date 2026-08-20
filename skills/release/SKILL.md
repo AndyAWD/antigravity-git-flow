@@ -13,8 +13,9 @@ description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備
 ## 執行流程（嚴格依序執行）
 
 ### Step 1: 防呆機制與狀態同步
+- 若專案設定有遠端儲存庫（`git remote`），先執行 `git fetch --all --tags --prune` 確保本機擁有遠端所有的標籤 (Tags) 與分支資訊。
 - 執行 `git branch --show-current` 確保使用者位於 `develop` 分支。若不是，請提示使用者並中斷執行。
-- 執行 `git pull origin develop` 確保分支處於最新狀態。
+- 若遠端存在 `origin/develop`，執行 `git pull origin develop` 確保分支處於最新狀態。
 
 ### Step 2: 判斷與確認版號
 - 若使用者在指令中指定了版號（如 `/antigravity-git-flow:release v1.2.0`），則使用該版號。

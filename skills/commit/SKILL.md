@@ -104,7 +104,7 @@ Step 2: 執行 `git ls-files --others --exclude-standard` 檢查是否有「未�
         - 若有新檔案，**必須暫停**並列出檔案清單給使用者看，使用 `ask_question` 詢問：「發現以下未追蹤的新檔案，請確認是否安全並加入版本控制？」
         - 選項提供：「(Recommended) 這些檔案都安全，全部加入」、「裡面有敏感檔案，我要加入 .gitignore」、「這次先不提交這些新檔案」。
         - 根據選擇進行對應處理（若選不提交，則改用 `git add -u` 僅更新舊檔案）。若沒有新檔案，則直接執行 `git add -A`。
-Step 3: 透過 `run_command` 執行本技能目錄下 `scripts/analyze.js` 蒐集資訊（請務必使用上述推導出的絕對路徑）。
+Step 3: 透過 `run_command` 執行本技能目錄下 `scripts/analyze.js` 蒐集資訊（請務必使用上述推導出的絕對路徑；該腳本會自動在背景 fetch 遠端狀態並輸出追蹤分支資訊）。
 Step 4: 依 diff 內容分組任務（自動拆分）
 Step 5: 執行本技能目錄下 `scripts/branch-guard.js <feature|hotfix> <branch-name>` 檢查分支（請務必使用絕對路徑）。
 Step 6: 決定每組的 type/scope

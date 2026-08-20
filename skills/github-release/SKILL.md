@@ -12,7 +12,8 @@ description: 建立 GitHub Release。自動擷取 commit 紀錄產生中英文�
 1. **確認版本號**：
    - 呼叫 `ask_question` 工具詢問使用者要發布的版本號（例如 `v1.8.0`）。可提供選項或讓使用者自行輸入。
 
-2. **擷取 Commit 紀錄**：
+2. **標籤同步與擷取 Commit 紀錄**：
+   - 若專案設定有遠端儲存庫，先執行 `git fetch --all --tags` 確保本機取得遠端所有的最新標籤 (Tags) 與提交歷史。
    - 找出上一個 tag：執行 `git describe --tags --abbrev=0`（若尚無 tag，則獲取所有 commit）。
    - 獲取期間內的 commit 紀錄：執行 `git log <上一個 tag>..HEAD --oneline` 或其他適合的格式。
 

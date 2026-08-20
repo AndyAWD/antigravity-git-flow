@@ -8,11 +8,13 @@ description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /anti
 - 當使用者輸入 `/antigravity-git-flow:merge`
 
 ## 執行流程
-1. **偵測主分支**：執行 `git branch -l main` 或類似指令檢查 `main` 分支是否存在。若存在則主分支為 `main`，若不存在則預設為 `master`。
-2. **取得目前分支**：執行 `git branch --show-current` 取得目前所在分支名稱。
-3. 根據目前的分支類型執行對應的合併邏輯（注意：所有合併動作都必須加上 `--no-ff` 以保留節點）：
+1. **遠端狀態同步 (Fetch)**：
+   若專案設定有遠端儲存庫（`git remote`），先執行 `git fetch --all --prune` 取得遠端所有分支的最新狀態。
+2. **偵測主分支**：執行 `git branch -l main` 或類似指令檢查 `main` 分支是否存在。若存在則主分支為 `main`，若不存在則預設為 `master`。
+3. **取得目前分支**：執行 `git branch --show-current` 取得目前所在分支名稱。
+4. 根據目前的分支類型執行對應的合併邏輯（注意：切換至目標分支後，若該分支存在遠端追蹤，應先執行 `git pull --ff-only` 確保目標分支為最新狀態，且所有合併動作都必須加上 `--no-ff` 以保留節點）：
    - **若在 `feature/*` 分支**：
-     1. 檢查並切換至 `develop` 分支（若無則建立）。
+     1. 檢查並切換至 `develop` 分支（若無則建立）。若 `develop` 存在遠端分支，先執行 `git pull --ff-only origin develop`（或 `git pull`）同步最新進度。
      2. 執行合併（`git merge --no-ff <current-branch>`）。
 
    - **若在 `release/*` 或 `hotfix/*` 分支**：
@@ -32,10 +34,10 @@ description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /anti
      ```
      - **若選擇「是 (建立 PR)」**：
        1. 請從您的 `<skills>` 列表中找出並執行 `github-pr` 技能。
-       2. 接著在本地切換至 `develop` 分支，執行合併（`git merge --no-ff <current-branch>`）同步程式碼。
+       2. 接著在本地切換至 `develop` 分支，先同步最新進度（`git pull --ff-only`），再執行合併（`git merge --no-ff <current-branch>`）同步程式碼。
      - **若選擇「否 (純本地合併)」**：
-       1. 切換至主分支 (`main` 或 `master`)，執行合併（`git merge --no-ff <current-branch>`）。
-       2. 切換至 `develop` 分支，執行合併（`git merge --no-ff <current-branch>`）。
+       1. 切換至主分支 (`main` 或 `master`)，先同步最新進度（`git pull --ff-only`），執行合併（`git merge --no-ff <current-branch>`）。
+       2. 切換至 `develop` 分支，先同步最新進度（`git pull --ff-only`），執行合併（`git merge --no-ff <current-branch>`）。
 
    - **其他分支**：若非以上分支，請詢問使用者或拒絕執行。
 

@@ -15,9 +15,16 @@ const section = (title, out) => {
   console.log('');
 };
 
+// 若有設定遠端儲存庫，先在背景進行 fetch 更新狀態
+const remotes = run(['remote']).trim();
+if (remotes) {
+  run(['fetch', '--all', '--prune', '--tags', '--quiet']);
+}
+
 section('current branch', run(['symbolic-ref', '--short', 'HEAD']));
-section('git status', run(['status', '--short']));
+section('git status', run(['status', '--short', '--branch']));
 section('staged diff (--stat)', run(['diff', '--cached', '--stat']));
 section('staged full diff', run(['diff', '--cached']));
 section('recent commits (last 10)', run(['log', '--oneline', '-10']));
-section('branches', run(['branch', '--list']));
+section('branches', run(['branch', '-vv']));
+
