@@ -15,20 +15,70 @@
 
 ## 安裝與啟用
 
-根據您使用的 Antigravity 平台，可以選擇以下方式安裝或啟用本外掛：
+本外掛（Plugin）支援全域安裝（所有專案與介面共用）與專案工作區安裝（僅限該專案或團隊共用）：
 
-### 1. Antigravity CLI (`agy`)
-透過 CLI 指令一鍵全域安裝：
+### 方式一：全域安裝（推薦，全平台通用）
+
+全域安裝後，**Antigravity CLI (`agy`)**、**Antigravity 2.0** 桌面應用程式與 **Antigravity IDE** 均能自動辨識並使用本外掛的所有技能（Skills）。
+
+#### 1. 透過命令列介面（CLI）一鍵安裝
 ```bash
 agy plugin install https://github.com/AndyAWD/antigravity-git-flow
 ```
 
-### 2. Antigravity 2.0
-- **圖形介面**：在桌面版應用程式左側欄的 **Skills & Customizations** 面板中，直接匯入本外掛。
-- **專案級別設定**：您也可以將外掛放置於專案根目錄的 `.agents/plugins/` 資料夾下，Antigravity 2.0 會在開啟該專案時自動載入。
+#### 2. 透過 Git 手動安裝至全域目錄
+若未配置 CLI 指令，可直接將本外掛複製（clone）至全域外掛目錄：
+- **Linux / macOS**：
+  ```bash
+  git clone https://github.com/AndyAWD/antigravity-git-flow.git ~/.gemini/config/plugins/antigravity-git-flow
+  ```
+- **Windows (PowerShell)**：
+  ```powershell
+  git clone https://github.com/AndyAWD/antigravity-git-flow.git "$HOME\.gemini\config\plugins\antigravity-git-flow"
+  ```
 
-### 3. Antigravity IDE
-- **工作區整合 (Workspace Integration)**：IDE 會自動偵測並套用 `<project-root>/.agents/` 內的設定。只需將外掛資料夾放入專案的 `.agents/plugins/` 目錄，即可在 IDE 的 Sidebar Chat 中無縫呼叫這些技能。
+---
+
+### 方式二：專案工作區安裝（Workspace / 團隊共用）
+
+若希望將本外掛限定於單一專案，或是透過版本控制系統（VCS）與團隊成員共用：
+
+1. **目錄結構放置（自動探索）**：
+   將本外掛資料夾放置於專案根目錄的 `.agents/plugins/antigravity-git-flow/`（必須包含 `plugin.json` 與 `skills/` 目錄）：
+   ```text
+   <專案根目錄>/
+   └── .agents/
+       └── plugins/
+           └── antigravity-git-flow/
+               ├── plugin.json
+               └── skills/
+   ```
+
+2. **透過 `plugins.json` 註冊（選用）**：
+   若外掛存放於自訂路徑或共用目錄，可在專案的 `.agents/plugins.json`（或全域 `~/.gemini/config/plugins.json`）中宣告：
+   ```json
+   {
+     "entries": [
+       { "path": "path/to/antigravity-git-flow" }
+     ]
+   }
+   ```
+
+當使用 Antigravity IDE、Antigravity 2.0 或 CLI 開啟該專案時，系統會自動載入。
+
+---
+
+### 外掛管理與開關
+
+您可透過 Antigravity CLI 指令或設定介面管理外掛狀態：
+
+- **列出已安裝外掛**：`agy plugin list`
+- **啟用外掛**：`agy plugin enable antigravity-git-flow`
+- **停用外掛**：`agy plugin disable antigravity-git-flow`
+- **移除外掛**：`agy plugin uninstall antigravity-git-flow`
+- **介面檢視與設定**：
+  - **狀態檢視**：在 Antigravity 2.0 左側欄的 **Skills & Customizations** 面板中，可即時檢視已載入的外掛與技能。
+  - **開關切換**：在應用程式 **Settings** 的 Plugins 區塊中，可直接切換外掛的啟用與停用狀態。
 
 ## 核心技能 (Skills) 與指令
 
