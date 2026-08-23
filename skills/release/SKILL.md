@@ -1,6 +1,6 @@
 ---
-name: antigravity-git-flow:release
-description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備 AI 跨平台智能版號更新能力（支援 package.json, build.gradle 等多種格式）。當使用者輸入 /antigravity-git-flow:release 時觸發。
+name: antigravity-git-flow:git-flow:release
+description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備 AI 跨平台智能版號更新能力（支援 package.json, build.gradle 等多種格式）。當使用者輸入 /antigravity-git-flow:git-flow:release 時觸發。
 ---
 
 # 建立發布分支（Start Release）
@@ -9,7 +9,7 @@ description: 依照 Git Flow 規範從 develop 建立 release 分支，並具備
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-git-flow:release [vX.Y.Z]`。
+1. 當使用者輸入 `/antigravity-git-flow:git-flow:release [vX.Y.Z]`。
 2. 當使用者要求「開啟發布分支」、「準備 release」時。
 
 ## 執行的實作步驟

@@ -1,6 +1,6 @@
 ---
-name: antigravity-git-flow:github-pr
-description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支執行，且 PR 內容須為繁體中文。當使用者輸入 /antigravity-git-flow:github-pr 時觸發。
+name: antigravity-git-flow:git-flow:github-pr
+description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支執行，且 PR 內容須為繁體中文。當使用者輸入 /antigravity-git-flow:git-flow:github-pr 時觸發。
 ---
 
 # 建立拉取請求（Pull Request）
@@ -9,7 +9,7 @@ description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-git-flow:github-pr`。
+1. 當使用者輸入 `/antigravity-git-flow:git-flow:github-pr`。
 2. 當使用者提及「發 PR」、「建立 Pull Request」、「發起程式碼審查」時。
 
 ## 執行的實作步驟
@@ -35,4 +35,4 @@ description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支
      目標分支統一設定為主分支（main 或 master）。
      執行指令：`gh pr create --title "<繁體中文標題>" --body "<繁體中文描述>" --base <目標分支>` 自動建立 PR。
    - 若未安裝或未登入（情境 B）：
-     停止後續所有動作，並提示使用者：「請先安裝 GitHub CLI（gh）並執行 `gh auth login` 完成登入後，再重新輸入 `/antigravity-git-flow:github-pr` 繼續執行。」
+     停止後續所有動作，並提示使用者：「請先安裝 GitHub CLI（gh）並執行 `gh auth login` 完成登入後，再重新輸入 `/antigravity-git-flow:git-flow:github-pr` 繼續執行。」

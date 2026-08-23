@@ -1,6 +1,6 @@
 ---
-name: antigravity-git-flow:merge
-description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /antigravity-git-flow:merge 時觸發。
+name: antigravity-git-flow:git-flow:merge
+description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /antigravity-git-flow:git-flow:merge 時觸發。
 ---
 
 # 分支合併（Git Flow Merge）
@@ -9,7 +9,7 @@ description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /anti
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-git-flow:merge`。
+1. 當使用者輸入 `/antigravity-git-flow:git-flow:merge`。
 2. 當使用者要求「合併分支」時。
 
 ## 執行的實作步驟
@@ -43,7 +43,7 @@ description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /anti
      }
      ```
      - 若選擇「是（建立 PR）」：
-       1. 從技能列表中讀取並執行 `antigravity-git-flow:github-pr`（或 `github-pr`）技能。
+       1. 從技能列表中讀取並執行 `antigravity-git-flow:git-flow:github-pr`（或 `github-pr`）技能。
        2. 在本地切換至 develop 分支，執行合併：`git merge --no-ff <current-branch>`。
      - 若選擇「否（純本地合併）」：
        1. 切換至主分支（main 或 master），執行合併：`git merge --no-ff <current-branch>`。

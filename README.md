@@ -78,14 +78,14 @@
 
 ### 1. 智慧導航（Auto Next）
 ```text
-/antigravity-git-flow:auto-next
+/antigravity-git-flow:git-flow:auto-next
 ```
 - 情境：不知下一步該做什麼，或想讓 AI 自動推進 Git Flow 流程。
 - 運作邏輯：專為不熟悉 Git 的使用者設計的自動模式。AI 會自動分析專案當前狀態，並決定下一步最適合的 Git Flow 操作（如初始化、提交、推播或發布），並在執行前向您報備。
 
 ### 2. 慣例式提交（Commit）
 ```text
-/antigravity-git-flow:commit
+/antigravity-git-flow:git-flow:commit
 ```
 - 情境：開發告一段落，準備將變更寫入版本歷史。
 - 運作邏輯：
@@ -96,7 +96,7 @@
 
 ### 3. 分支合併（Merge）
 ```text
-/antigravity-git-flow:merge
+/antigravity-git-flow:git-flow:merge
 ```
 - 情境：功能或修復開發完成，準備整併回主要分支。
 - 運作邏輯：
@@ -106,7 +106,7 @@
 
 ### 4. 發布拉取請求（GitHub PR）
 ```text
-/antigravity-git-flow:github-pr
+/antigravity-git-flow:git-flow:github-pr
 ```
 - 情境：合併到主分支前，需要透過 GitHub 進行程式碼審查（Code Review）。
 - 運作邏輯：
@@ -116,14 +116,14 @@
 
 ### 5. 遠端推播（Push）
 ```text
-/antigravity-git-flow:push
+/antigravity-git-flow:git-flow:push
 ```
 - 情境：將本地端的變更同步上傳至 GitHub 遠端儲存庫。
 - 運作邏輯：推送前先 fetch 檢查遠端狀態。若本地落後遠端會先提醒同步；確認無落後後執行 `git push -u origin HEAD --follow-tags`。
 
 ### 6. 建立發布分支（Start Release）
 ```text
-/antigravity-git-flow:release [vX.Y.Z]
+/antigravity-git-flow:git-flow:release [vX.Y.Z]
 ```
 - 情境：開發階段告一段落，準備從 develop 開啟發布測試週期。
 - 運作邏輯：
@@ -134,7 +134,7 @@
 
 ### 7. 建立 GitHub Release
 ```text
-/antigravity-git-flow:github-release
+/antigravity-git-flow:git-flow:github-release
 ```
 - 情境：專案開發到里程碑，準備在 GitHub 上發布新版本。
 - 運作邏輯：
@@ -144,14 +144,14 @@
 
 ### 8. 自動與手動版本標記（Tag）
 ```text
-/antigravity-git-flow:tag [vX.Y.Z]
+/antigravity-git-flow:git-flow:tag [vX.Y.Z]
 ```
 - 情境：在主要分支完成發布，需要依照規範打上版號標記。
 - 運作邏輯：嚴格限制僅能在 main 或 master 分支執行，依據 SemVer 規範判斷升級層級並打上 `vX.Y.Z` 標籤。
 
 ### 9. 專案初始化（Init）
 ```text
-/antigravity-git-flow:init
+/antigravity-git-flow:git-flow:init
 ```
 - 情境：全新專案一鍵架設 Git Flow 基礎架構。
 - 運作邏輯：檢查或執行 `git init`，建立初始提交，並建立標準的 main 與 develop 雙軌分支。
