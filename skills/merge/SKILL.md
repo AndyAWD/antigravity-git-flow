@@ -2,22 +2,32 @@
 name: antigravity-git-flow:merge
 description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /antigravity-git-flow:merge 時觸發。
 ---
-# Merge (Git Flow)
 
-## 何時使用此 Skill
-- 當使用者輸入 `/antigravity-git-flow:merge`
+# 分支合併（Git Flow Merge）
 
-## 執行流程
-1. **遠端狀態同步 (Fetch)**：
+依照 Git Flow 規則執行分支合併。
+
+## 什麼時候觸發此技能？
+
+1. 當使用者輸入 `/antigravity-git-flow:merge`。
+2. 當使用者要求「合併分支」時。
+
+## 執行的實作步驟
+
+1. 第一步：遠端狀態同步（Fetch）
    若專案設定有遠端儲存庫（`git remote`），先執行 `git fetch --all --prune` 取得遠端所有分支的最新狀態。
-2. **偵測主分支**：執行 `git branch -l main` 或類似指令檢查 `main` 分支是否存在。若存在則主分支為 `main`，若不存在則預設為 `master`。
-3. **取得目前分支**：執行 `git branch --show-current` 取得目前所在分支名稱。
-4. 根據目前的分支類型執行對應的合併邏輯（注意：切換至目標分支後，若該分支存在遠端追蹤，應先執行 `git pull --ff-only` 確保目標分支為最新狀態，且所有合併動作都必須加上 `--no-ff` 以保留節點）：
-   - **若在 `feature/*` 分支**：
-     1. 檢查並切換至 `develop` 分支（若無則建立）。若 `develop` 存在遠端分支，先執行 `git pull --ff-only origin develop`（或 `git pull`）同步最新進度。
-     2. 執行合併（`git merge --no-ff <current-branch>`）。
 
-   - **若在 `release/*` 或 `hotfix/*` 分支**：
+2. 第二步：偵測主分支
+   執行 `git branch -l main` 檢查 main 分支是否存在。若存在則主分支為 main，若不存在則預設為 master。
+
+3. 第三步：取得目前分支名稱
+   執行 `git branch --show-current` 取得目前所在分支名稱。
+
+4. 第四步：依分支類型執行合併邏輯（切換至目標分支後先執行 `git pull --ff-only` 同步，且合併指令一律加上 `--no-ff` 保留節點）：
+   - 若在 feature/* 分支：
+     1. 切換至 develop 分支（若無則建立）。
+     2. 執行合併：`git merge --no-ff <current-branch>`。
+   - 若在 release/* 或 hotfix/* 分支：
      使用 `ask_question` 工具詢問使用者是否要發送 Pull Request：
      ```json
      {
@@ -32,28 +42,26 @@ description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /anti
        "toolAction": "詢問是否建立 PR"
      }
      ```
-     - **若選擇「是 (建立 PR)」**：
-       1. 請從您的 `<skills>` 列表中找出並執行 `antigravity-git-flow:github-pr`（或 `github-pr`）技能。
-       2. 接著在本地切換至 `develop` 分支，先同步最新進度（`git pull --ff-only`），再執行合併（`git merge --no-ff <current-branch>`）同步程式碼。
-     - **若選擇「否 (純本地合併)」**：
-       1. 切換至主分支 (`main` 或 `master`)，先同步最新進度（`git pull --ff-only`），執行合併（`git merge --no-ff <current-branch>`）。
-       2. 切換至 `develop` 分支，先同步最新進度（`git pull --ff-only`），執行合併（`git merge --no-ff <current-branch>`）。
+     - 若選擇「是（建立 PR）」：
+       1. 從技能列表中讀取並執行 `antigravity-git-flow:github-pr`（或 `github-pr`）技能。
+       2. 在本地切換至 develop 分支，執行合併：`git merge --no-ff <current-branch>`。
+     - 若選擇「否（純本地合併）」：
+       1. 切換至主分支（main 或 master），執行合併：`git merge --no-ff <current-branch>`。
+       2. 切換至 develop 分支，執行合併：`git merge --no-ff <current-branch>`。
 
-   - **其他分支**：若非以上分支，請詢問使用者或拒絕執行。
+5. 第五步：衝突處理
+   若發生合併衝突：
+   - 單純衝突嘗試自動解決並執行 `git add -A`。
+   - 複雜衝突請保留衝突狀態，並告知使用者需手動排解，待確認後再繼續。
 
-4. **衝突處理**：
-   - 若發生合併衝突，請評估複雜度。
-   - 若衝突單純（例如新增 import、互不干涉的行），請嘗試自動解決並執行 `git add -A`。
-   - 若衝突過於複雜或涉及核心業務邏輯，**請務必保留衝突狀態，並告知使用者需手動排解，待使用者排解並確認後再繼續。**
-
-5. **合併完成後的清理作業 (Branch Cleanup)**：
-   當所有合併與衝突處理完成，並且成功提交後，使用 `ask_question` 工具（啟用多選）詢問使用者是否刪除原始分支：
+6. 第六步：分支清理作業（Branch Cleanup）
+   合併完成後，使用 `ask_question` 工具（啟用多選）詢問是否刪除原始分支：
    ```json
    {
      "questions": [
        {
-         "question": "合併已順利完成！請問您是否要刪除剛才合併的原始分支 (<原始分支名稱>) 來保持專案乾淨？",
-         "options": ["刪除本地分支", "刪除遠程分支", "保留分支，不刪除"],
+         "question": "合併已順利完成！請問您是否要刪除剛才合併的原始分支來保持專案乾淨？",
+         "options": ["刪除本地分支", "刪除遠端分支", "保留分支，不刪除"],
          "is_multi_select": true
        }
      ],
@@ -61,7 +69,6 @@ description: 依照 Git Flow 規則執行分支合併。當使用者輸入 /anti
      "toolAction": "詢問分支刪除意願"
    }
    ```
-   - 請根據使用者的「多選」結果執行：
-     - 若包含「刪除本地分支」：執行 `git branch -d <原始分支>`。
-     - 若包含「刪除遠程分支」：執行 `git push origin --delete <原始分支>`。
-     - 若勾選「保留分支，不刪除」或「完全沒勾選任何選項」：不做任何事，直接結束流程。
+   - 勾選刪除本地分支：執行 `git branch -d <原始分支>`。
+   - 勾選刪除遠端分支：執行 `git push origin --delete <原始分支>`。
+   - 勾選保留分支或未勾選：保持現狀，結束流程。
