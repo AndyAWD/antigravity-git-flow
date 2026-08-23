@@ -1,5 +1,5 @@
 ---
-name: github-pr
+name: antigravity-git-flow:github-pr
 description: 建立 Pull Request。限制僅能在 hotfix/* 或 release/* 分支執行，且 PR 內容須為繁體中文。當使用者輸入 /antigravity-git-flow:github-pr 時觸發。
 ---
 # Pull Request

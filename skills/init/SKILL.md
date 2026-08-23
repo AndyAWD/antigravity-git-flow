@@ -1,5 +1,5 @@
 ---
-name: init
+name: antigravity-git-flow:init
 description: 一鍵為全新專案搭建 Git Flow 標準的 main 與 develop 雙軌分支架構。當使用者輸入 /antigravity-git-flow:init 時觸發。
 ---
 

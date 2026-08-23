@@ -1,5 +1,5 @@
 ---
-name: push
+name: antigravity-git-flow:push
 description: 執行 git push 將本地變更推送到遠端。當使用者輸入 /antigravity-git-flow:push 時觸發。
 ---
 # Push
