@@ -121,7 +121,27 @@
 - 情境：將本地端的變更同步上傳至 GitHub 遠端儲存庫。
 - 運作邏輯：推送前先 fetch 檢查遠端狀態。若本地落後遠端會先提醒同步；確認無落後後執行 `git push -u origin HEAD --follow-tags`。
 
-### 6. 建立發布分支（Start Release）
+### 6. 遠端狀態擷取（Fetch）
+```text
+/antigravity-git-flow:agy-git-flow:fetch
+```
+- 情境：擷取遠端最新變更與標籤，並在本地多軌快轉更新所有非當前分支。
+- 運作邏輯：
+  1. 執行 `git fetch --all --prune --tags` 下載全域最新物件。
+  2. 掃描所有本地分支，針對非當前分支在背景進行本地快轉更新。
+  3. 若遇分叉、衝突或無遠端分支則貫徹「不行的話就算了」安全略過，絕不破壞當前工作區。
+
+### 7. 遠端拉取（Pull）
+```text
+/antigravity-git-flow:agy-git-flow:pull
+```
+- 情境：整合遠端最新進度至當前工作分支。
+- 運作邏輯：
+  1. 強制自動先執行 fetch，確保全域資料與非當前分支為最新狀態。
+  2. 針對當前分支進行安全快轉拉取（`git pull --ff-only`）。
+  3. 若因工作區未提交、分叉、衝突或未追蹤上游等原因無法直接拉取，自動啟動 `ask_question` 決策選單提供下一步排解建議。
+
+### 8. 建立發布分支（Start Release）
 ```text
 /antigravity-git-flow:agy-git-flow:release [vX.Y.Z]
 ```
@@ -132,7 +152,7 @@
   3. 跨平台智慧版號更新：自動搜尋並更新 `package.json`、`build.gradle` 等檔案。
   4. 自動提交：自動建立 `chore(release): bump version to <版號>` 提交並附上共同作者簽名。
 
-### 7. 建立 GitHub Release
+### 9. 建立 GitHub Release
 ```text
 /antigravity-git-flow:agy-git-flow:github-release
 ```
@@ -142,14 +162,14 @@
   2. 自動 Changelog：比對差異，自動整理中英文雙語發布說明。
   3. 發布至 GitHub：透過 `gh release create` 自動建立 GitHub Release。
 
-### 8. 自動與手動版本標記（Tag）
+### 10. 自動與手動版本標記（Tag）
 ```text
 /antigravity-git-flow:agy-git-flow:tag [vX.Y.Z]
 ```
 - 情境：在主要分支完成發布，需要依照規範打上版號標記。
 - 運作邏輯：嚴格限制僅能在 main 或 master 分支執行，依據 SemVer 規範判斷升級層級並打上 `vX.Y.Z` 標籤。
 
-### 9. 專案初始化（Init）
+### 11. 專案初始化（Init）
 ```text
 /antigravity-git-flow:agy-git-flow:init
 ```
