@@ -77,8 +77,8 @@ antigravity-git-flow/
     ├── merge/
     ├── pull/
     ├── push/
-    ├── readme/
     ├── release/
+    ├── sync-readme/
     └── tag/
 ```
 
@@ -219,17 +219,17 @@ Once installed, trigger capabilities using natural language prompts or dedicated
   2. Creates initial commit.
   3. Sets up dual-branch main and develop structure.
 
-### 12. Bilingual Documentation Generator (Readme)
+### 12. Bilingual Documentation Sync (Sync Readme)
 
 ```text
-/antigravity-git-flow:agy-git-flow:readme
+/antigravity-git-flow:agy-git-flow:sync-readme
 ```
 
-- **When to Use**: When creating or updating bilingual README files.
+- **When to Use**: When creating, updating, or refactoring bilingual README files.
 - **How It Works**:
-  1. Parses manifests and `skills/` directory.
-  2. Extracts parameters and workflows.
-  3. Generates symmetric `README.md` (English) and `README.zh-TW.md` (Traditional Chinese).
+  1. Inspects workspace structure, manifests, and `skills/` directory.
+  2. Automatically identifies execution mode (Create, Update, or Refactor).
+  3. Synchronizes symmetric `README.md` (English) and `README.zh-TW.md` (Traditional Chinese) adhering to standard specifications.
 
 ## License
 

@@ -77,8 +77,8 @@ antigravity-git-flow/
     ├── merge/
     ├── pull/
     ├── push/
-    ├── readme/
     ├── release/
+    ├── sync-readme/
     └── tag/
 ```
 
@@ -219,17 +219,17 @@ antigravity-git-flow/
   2. 建立初始提交。
   3. 建立標準的 main 與 develop 雙軌分支架構。
 
-### 12. 雙語說明文件生成器（Readme）
+### 12. 說明文件智慧同步（Sync Readme）
 
 ```text
-/antigravity-git-flow:agy-git-flow:readme
+/antigravity-git-flow:agy-git-flow:sync-readme
 ```
 
-- **使用情境**：建立或更新專案的雙語說明文件時。
+- **使用情境**：全新建立、增量更新或結構重構專案的雙語說明文件時。
 - **運作流程**：
-  1. 解析專案配置檔與 `skills/` 目錄。
-  2. 萃取各技能參數與使用流程。
-  3. 依標準規格產生對稱的 `README.md`（英文）與 `README.zh-TW.md`（繁體中文）。
+  1. 解析專案配置檔、遠端儲存庫與 `skills/` 目錄。
+  2. 自動判定執行模式（全新建立、增量更新或結構重構）。
+  3. 依標準規格同步產生對稱的 `README.md`（英文）與 `README.zh-TW.md`（繁體中文）。
 
 ## 授權條款
 
