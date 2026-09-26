@@ -51,8 +51,6 @@ agy plugin install https://github.com/AndyAWD/antigravity-git-flow
   agy plugin uninstall antigravity-git-flow
   ```
 
-> 在 Antigravity 2.0 左側欄的 **Skills & Customizations** 面板中，亦可即時檢視外掛載入狀態。
-
 ## 專案資料夾目錄
 
 ```text

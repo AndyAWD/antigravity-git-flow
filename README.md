@@ -51,8 +51,6 @@ agy plugin install https://github.com/AndyAWD/antigravity-git-flow
   agy plugin uninstall antigravity-git-flow
   ```
 
-> In Antigravity 2.0, you can also inspect and verify real-time loading status in the **Skills & Customizations** panel in the left sidebar.
-
 ## Directory Structure
 
 ```text
