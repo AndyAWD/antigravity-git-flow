@@ -27,25 +27,29 @@ agy plugin install https://github.com/AndyAWD/antigravity-git-flow
 
 ## Plugin Management
 
-  • List installed plugins:
-    ```bash
-    agy plugin list
-    ```
+• List installed plugins:
 
-  • Enable this plugin:
-    ```bash
-    agy plugin enable antigravity-git-flow
-    ```
+  ```bash
+  agy plugin list
+  ```
 
-  • Disable this plugin:
-    ```bash
-    agy plugin disable antigravity-git-flow
-    ```
+• Enable this plugin:
 
-  • Uninstall this plugin:
-    ```bash
-    agy plugin uninstall antigravity-git-flow
-    ```
+  ```bash
+  agy plugin enable antigravity-git-flow
+  ```
+
+• Disable this plugin:
+
+  ```bash
+  agy plugin disable antigravity-git-flow
+  ```
+
+• Uninstall this plugin:
+
+  ```bash
+  agy plugin uninstall antigravity-git-flow
+  ```
 
 > In Antigravity 2.0, you can also inspect and verify real-time loading status in the **Skills & Customizations** panel in the left sidebar.
 

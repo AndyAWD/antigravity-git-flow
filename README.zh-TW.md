@@ -27,25 +27,29 @@ agy plugin install https://github.com/AndyAWD/antigravity-git-flow
 
 ## 如何管理與切換外掛程式
 
-  • 列出已安裝外掛：
-    ```bash
-    agy plugin list
-    ```
+• 列出已安裝外掛：
 
-  • 啟用外掛：
-    ```bash
-    agy plugin enable antigravity-git-flow
-    ```
+  ```bash
+  agy plugin list
+  ```
 
-  • 停用外掛：
-    ```bash
-    agy plugin disable antigravity-git-flow
-    ```
+• 啟用外掛：
 
-  • 移除外掛：
-    ```bash
-    agy plugin uninstall antigravity-git-flow
-    ```
+  ```bash
+  agy plugin enable antigravity-git-flow
+  ```
+
+• 停用外掛：
+
+  ```bash
+  agy plugin disable antigravity-git-flow
+  ```
+
+• 移除外掛：
+
+  ```bash
+  agy plugin uninstall antigravity-git-flow
+  ```
 
 > 在 Antigravity 2.0 左側欄的 **Skills & Customizations** 面板中，亦可即時檢視外掛載入狀態。
 
