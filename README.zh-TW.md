@@ -91,7 +91,7 @@ antigravity-git-flow/
 ### 1. 智慧導航（Auto Next）
 
 ```text
-/antigravity-git-flow:agy-git-flow:auto-next
+/agy-git-flow:auto-next
 ```
 
 - **使用情境**：不知下一步該做什麼，或想讓 AI 自動推進 Git Flow 流程時。
@@ -104,7 +104,7 @@ antigravity-git-flow/
 ### 2. 慣例式提交（Commit）
 
 ```text
-/antigravity-git-flow:agy-git-flow:commit
+/agy-git-flow:commit
 ```
 
 - **使用情境**：開發告一段落，準備將工作區變更寫入版本歷史時。
@@ -116,7 +116,7 @@ antigravity-git-flow/
 ### 3. 分支合併（Merge）
 
 ```text
-/antigravity-git-flow:agy-git-flow:merge
+/agy-git-flow:merge
 ```
 
 - **使用情境**：功能或修復開發完成，準備整併回對應主分支時。
@@ -128,7 +128,7 @@ antigravity-git-flow/
 ### 4. 發布拉取請求（GitHub PR）
 
 ```text
-/antigravity-git-flow:agy-git-flow:github-pr
+/agy-git-flow:github-pr
 ```
 
 - **使用情境**：從 release/* 或 hotfix/* 分支向 main 主分支發起程式碼審查時。
@@ -141,7 +141,7 @@ antigravity-git-flow/
 ### 5. 遠端推播（Push）
 
 ```text
-/antigravity-git-flow:agy-git-flow:push
+/agy-git-flow:push
 ```
 
 - **使用情境**：將本地端變更與標籤同步上傳至遠端儲存庫時。
@@ -152,7 +152,7 @@ antigravity-git-flow/
 ### 6. 遠端狀態擷取（Fetch）
 
 ```text
-/antigravity-git-flow:agy-git-flow:fetch
+/agy-git-flow:fetch
 ```
 
 - **使用情境**：擷取遠端最新變更與標籤，並在本地多軌快轉更新所有非當前分支時。
@@ -164,7 +164,7 @@ antigravity-git-flow/
 ### 7. 遠端拉取（Pull）
 
 ```text
-/antigravity-git-flow:agy-git-flow:pull
+/agy-git-flow:pull
 ```
 
 - **使用情境**：整合遠端最新進度至當前工作分支時。
@@ -176,7 +176,7 @@ antigravity-git-flow/
 ### 8. 建立發布分支（Release）
 
 ```text
-/antigravity-git-flow:agy-git-flow:release [vX.Y.Z]
+/agy-git-flow:release [vX.Y.Z]
 ```
 
 - **使用情境**：開發階段告一段落，準備從 develop 切出發布測試週期時。
@@ -188,7 +188,7 @@ antigravity-git-flow/
 ### 9. 建立 GitHub Release
 
 ```text
-/antigravity-git-flow:agy-git-flow:github-release
+/agy-git-flow:github-release
 ```
 
 - **使用情境**：專案開發到達里程碑，準備在 GitHub 上建立正式發布說明時。
@@ -200,7 +200,7 @@ antigravity-git-flow/
 ### 10. 自動與手動版本標記（Tag）
 
 ```text
-/antigravity-git-flow:agy-git-flow:tag [vX.Y.Z]
+/agy-git-flow:tag [vX.Y.Z]
 ```
 
 - **使用情境**：在 main 主分支完成合併後，為節點打上正式版本標籤時。
@@ -212,7 +212,7 @@ antigravity-git-flow/
 ### 11. 專案初始化（Init）
 
 ```text
-/antigravity-git-flow:agy-git-flow:init
+/agy-git-flow:init
 ```
 
 - **使用情境**：全新專案一鍵架設 Git Flow 基礎架構時。
@@ -224,7 +224,7 @@ antigravity-git-flow/
 ### 12. 說明文件智慧同步（Sync Readme）
 
 ```text
-/antigravity-git-flow:agy-git-flow:sync-readme
+/agy-git-flow:sync-readme
 ```
 
 - **使用情境**：全新建立、增量更新或結構重構專案的雙語說明文件時。

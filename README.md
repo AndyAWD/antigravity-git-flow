@@ -91,7 +91,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 1. Auto Navigation (Auto Next)
 
 ```text
-/antigravity-git-flow:agy-git-flow:auto-next
+/agy-git-flow:auto-next
 ```
 
 - **When to Use**: When unsure of the next step, or wishing to automate the Git Flow progression.
@@ -104,7 +104,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 2. Conventional Commits (Commit)
 
 ```text
-/antigravity-git-flow:agy-git-flow:commit
+/agy-git-flow:commit
 ```
 
 - **When to Use**: When changes are ready to be committed to version history.
@@ -116,7 +116,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 3. Branch Merge (Merge)
 
 ```text
-/antigravity-git-flow:agy-git-flow:merge
+/agy-git-flow:merge
 ```
 
 - **When to Use**: When a feature, release, or hotfix branch is ready to merge.
@@ -128,7 +128,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 4. Open Pull Request (GitHub PR)
 
 ```text
-/antigravity-git-flow:agy-git-flow:github-pr
+/agy-git-flow:github-pr
 ```
 
 - **When to Use**: When opening a code review from release/* or hotfix/* to main.
@@ -141,7 +141,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 5. Remote Push (Push)
 
 ```text
-/antigravity-git-flow:agy-git-flow:push
+/agy-git-flow:push
 ```
 
 - **When to Use**: When pushing local commits and tags to remote repository.
@@ -152,7 +152,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 6. Remote Fetch (Fetch)
 
 ```text
-/antigravity-git-flow:agy-git-flow:fetch
+/agy-git-flow:fetch
 ```
 
 - **When to Use**: When fetching latest remote refs and fast-forwarding non-current local branches.
@@ -164,7 +164,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 7. Remote Pull (Pull)
 
 ```text
-/antigravity-git-flow:agy-git-flow:pull
+/agy-git-flow:pull
 ```
 
 - **When to Use**: When synchronizing remote commits into current working branch.
@@ -176,7 +176,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 8. Start Release Branch (Release)
 
 ```text
-/antigravity-git-flow:agy-git-flow:release [vX.Y.Z]
+/agy-git-flow:release [vX.Y.Z]
 ```
 
 - **When to Use**: When development cycle ends and release testing phase begins.
@@ -188,7 +188,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 9. GitHub Release (Release Notes)
 
 ```text
-/antigravity-git-flow:agy-git-flow:github-release
+/agy-git-flow:github-release
 ```
 
 - **When to Use**: When cutting a new formal GitHub release.
@@ -200,7 +200,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 10. Tag Version (Tag)
 
 ```text
-/antigravity-git-flow:agy-git-flow:tag [vX.Y.Z]
+/agy-git-flow:tag [vX.Y.Z]
 ```
 
 - **When to Use**: When tagging a released commit on main branch.
@@ -212,7 +212,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 11. Repository Init (Init)
 
 ```text
-/antigravity-git-flow:agy-git-flow:init
+/agy-git-flow:init
 ```
 
 - **When to Use**: When scaffolding Git Flow branch structure for a new repository.
@@ -224,7 +224,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 12. Bilingual Documentation Sync (Sync Readme)
 
 ```text
-/antigravity-git-flow:agy-git-flow:sync-readme
+/agy-git-flow:sync-readme
 ```
 
 - **When to Use**: When creating, updating, or refactoring bilingual README files.

@@ -1,6 +1,6 @@
 ---
-name: antigravity-git-flow:agy-git-flow:github-pr
-description: 專為 GitHub 拉取請求（Pull Request）設計的多語系說明自動生成技能。限制僅能在 hotfix/* 或 release/* 分支執行。建立前會主動以 ask_question 詢問使用者偏好語言（繁體中文、英文、中英雙語對照），自動分析分支變更並依標準範本產出標題與內文，支援直接透過 GitHub CLI 建立 PR。當使用者輸入 /antigravity-git-flow:agy-git-flow:github-pr 或提及「發 PR」、「建立 PR」、「產生 PR 描述」時觸發。
+name: agy-git-flow:github-pr
+description: 專為 GitHub 拉取請求（Pull Request）設計的多語系說明自動生成技能。限制僅能在 hotfix/* 或 release/* 分支執行。建立前會主動以 ask_question 詢問使用者偏好語言（繁體中文、英文、中英雙語對照），自動分析分支變更並依標準範本產出標題與內文，支援直接透過 GitHub CLI 建立 PR。當使用者輸入 /agy-git-flow:github-pr 或提及「發 PR」、「建立 PR」、「產生 PR 描述」時觸發。
 ---
 
 # 建立拉取請求（Pull Request）
@@ -9,7 +9,7 @@ description: 專為 GitHub 拉取請求（Pull Request）設計的多語系說�
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入斜線指令（Slash Command）：`/antigravity-git-flow:agy-git-flow:github-pr`。
+1. 當使用者輸入斜線指令（Slash Command）：`/agy-git-flow:github-pr`。
 2. 當使用者提及「發 PR」、「建立 Pull Request」、「產生 PR 內容」、「發起程式碼審查」等字眼。
 
 ## 執行的實作步驟
