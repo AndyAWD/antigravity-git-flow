@@ -179,7 +179,7 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
         - **嚴格禁止**未經檢視與使用者同意無差別執行 `git add -A`。
 3. 第三步：透過 `run_command` 執行 `scripts/analyze.js` 蒐集工作區狀態與 diff 資訊。
 4. 第四步：依 diff 內容自動分析並拆分獨立任務群組。
-5. 第五步：執行 `scripts/branch-guard.js <feature|hotfix> <branch-name>` 確保分支正確。
+5. 第五步：若已處於合規工作分支（`feature/*`, `release/*`, `hotfix/*`），可直接執行 `scripts/branch-guard.js` 驗證；若在 main 或 develop 需切換分支，執行 `scripts/branch-guard.js <feature|hotfix|release|direct> [branch-name]` 確保分支正確。
 6. 第六步：決定每組任務的 type 與 scope。
 7. 第七步：撰寫符合規範的訊息（type 與 scope 保持英文，description 與 body 必須使用繁體中文）。
 8. 第八步：針對每組任務，執行 `git reset` 重設暫存區，接著精準 `git add` 該組檔案，最後執行 `scripts/commit.js "<訊息>"` 完成提交。
