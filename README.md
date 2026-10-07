@@ -109,8 +109,8 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 
 - **When to Use**: When changes are ready to be committed to version history.
 - **How It Works**:
-  1. Stages changes and analyzes diffs.
-  2. Splits multi-task changes into discrete logical commits.
+  1. Smart untracked files review: Inspects file contents, explains functionality, groups files by type, and prompts the user via multi-select to choose which files to track, discard, or ignore.
+  2. Stages selected changes and analyzes diffs, splitting multi-task changes into discrete logical commits.
   3. Generates Conventional Commit messages with Google Antigravity co-author trailer.
 
 ### 3. Branch Merge (Merge)
