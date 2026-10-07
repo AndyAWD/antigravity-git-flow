@@ -18,21 +18,28 @@ description: 執行 git push 將本地變更推送到遠端。當使用者輸入
 
 ### 步驟 0：工作區狀態檢查（防越界機制）
 
-1. 執行 `git status --porcelain` 檢查工作區是否乾淨。
-2. 若偵測到有未暫存、已暫存或未追蹤的檔案（工作區非乾淨狀態）：
-   - 提醒使用者：「偵測到工作區尚有未提交的變更。`push` 僅會推送已提交的 Commit，不會推送未提交的檔案。若您希望將目前的修改一併推送，請先執行 `/agy-git-flow:commit` 完成提交。」
+1. 執行 `git status --untracked-files=no --porcelain` 檢查工作區是否乾淨。
+2. 若偵測到有已追蹤檔案之未暫存或已暫存的修改（工作區非乾淨狀態）：
+   - 提醒使用者：「偵測到工作區尚有已追蹤檔案之未提交變更。`push` 僅會推送已提交的 Commit，不會推送未提交的檔案。若您希望將目前的修改一併推送，請先執行 `/agy-git-flow:commit` 完成提交。」
    - **嚴格防越界規範**：嚴格禁止在此處詢問使用者是否代為提交，亦嚴格禁止執行原生 `git add` 或 `git commit` 指令。
    - 若當前分支落後遠端（Behind > 0），因未提交變更會導致 pull/rebase 失敗或發生衝突，**必須強制中止流程**，要求使用者先使用 `/agy-git-flow:commit` 提交或暫存後再推播。
+   - 注意：未追蹤檔案（Untracked files）不阻擋推播作業。
 
-### 步驟 1：遠端狀態擷取（Fetch）
+### 步驟 1：遠端狀態擷取（Fetch）與遠端檢查
 
-若專案設定有遠端儲存庫（`git remote`），先透過 `run_command` 執行 `git fetch origin --tags` 獲取遠端最新變更與標籤。
+1. 檢查是否設定有遠端儲存庫（`git remote`）。
+2. 若尚未設定任何遠端儲存庫（`git remote` 無輸出）：
+   - 向使用者說明：「目前專案為純本地儲存庫，尚未設定任何遠端儲存庫（Remote）。若需備份至雲端，請先透過 `git remote add origin <URL>` 設定遠端儲存庫位址。」並正常結束流程。
+3. 若設定有遠端儲存庫：透過 `run_command` 執行 `git fetch origin --tags` 獲取遠端最新變更與標籤。
 
-### 步驟 2：防呆檢查（Behind Check）
+### 步驟 2：防呆檢查與推播（Behind Check & Push）
 
-檢查當前分支是否落後遠端。
-- 若落後遠端（Behind > 0）：告知使用者「遠端已有新的提交，需要先同步更新」，引導使用者執行 `/agy-git-flow:pull`（或執行 `git pull --rebase`）完成整合。若發生衝突需完成合併提交，必須透過 `commit` 技能之 `scripts/commit.js` 執行，嚴格禁止執行原生 `git commit` 指令。
-- 若無落後（Behind == 0 或無 upstream）：直接透過 `run_command` 執行 `git push -u origin HEAD --follow-tags` 將當前分支與相關標籤推送到遠端並建立追蹤。
+1. 檢查當前分支是否落後遠端。
+   - 若落後遠端（Behind > 0）：告知使用者「遠端已有新的提交，需要先同步更新」，引導使用者執行 `/agy-git-flow:pull`（或執行 `git pull --rebase`）完成整合。若發生衝突需完成合併提交，必須透過 `commit` 技能之 `scripts/commit.js` 執行，嚴格禁止執行原生 `git commit` 指令。
+   - 若無落後（Behind == 0 或無 upstream）：
+     - 檢查主分支（main 或 master）是否亦有尚未推送到遠端的提交（Ahead > 0，例如發布或修復合併完成後留在 develop）：
+       - 若主分支超前遠端且目前在 develop：執行雙分支推播 `git push origin main develop --follow-tags`，確保發布版本節點與標籤完整同步至遠端。
+       - 其他情況：直接透過 `run_command` 執行 `git push -u origin HEAD --follow-tags` 將當前分支與相關標籤推送到遠端並建立追蹤。
 
 ## 嚴格禁止事項（Anti-patterns）
 

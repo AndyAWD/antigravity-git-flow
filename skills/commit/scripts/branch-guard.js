@@ -7,7 +7,13 @@ if (!kind || !name || !['feature', 'hotfix'].includes(kind)) {
   process.exit(1);
 }
 
-const git = (args) => execFileSync('git', args, { encoding: 'utf8' }).trim();
+const safeGit = (args) => {
+  try {
+    return execFileSync('git', args, { encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+  } catch {
+    return '';
+  }
+};
 const gitLoud = (args) => execFileSync('git', args, { stdio: 'inherit' });
 const branchExists = (b) => {
   try {
@@ -18,14 +24,22 @@ const branchExists = (b) => {
   }
 };
 
-const cur = git(['symbolic-ref', '--short', 'HEAD']);
+const cur = safeGit(['symbolic-ref', '--short', 'HEAD']) || 'HEAD';
+const curLower = cur.toLowerCase();
+
+const targetBranch = (prefix, n) => (n.includes('/') ? n : `${prefix}/${n}`);
 
 const create = (b) => {
-  console.log(`建立分支 ${b}...`);
-  gitLoud(['checkout', '-b', b]);
+  if (branchExists(b)) {
+    console.log(`分支 ${b} 已存在，切換至該分支...`);
+    gitLoud(['checkout', b]);
+  } else {
+    console.log(`建立分支 ${b}...`);
+    gitLoud(['checkout', '-b', b]);
+  }
 };
 
-if (cur === 'main' || cur === 'master') {
+if (curLower === 'main' || curLower === 'master') {
   if (kind === 'hotfix') {
     console.log(`在 ${cur} 上偵測到 hotfix 意圖...`);
     if (!branchExists('develop')) {
@@ -33,26 +47,40 @@ if (cur === 'main' || cur === 'master') {
       create('develop');
       gitLoud(['checkout', cur]); // 切回 main / master
     }
-    console.log(`從 ${cur} 建立 hotfix/${name}`);
-    create(`hotfix/${name}`);
+    const hotfixBranch = targetBranch('hotfix', name);
+    console.log(`從 ${cur} 建立或切換至 ${hotfixBranch}`);
+    create(hotfixBranch);
   } else {
+    const featBranch = targetBranch('feature', name);
     if (branchExists('develop')) {
-      console.error(`ERROR: 目前在 ${cur}，但 develop 分支已存在。`);
-      console.error('可能在錯誤分支 — 請先手動切到 develop 或適當分支後重試。');
-      process.exit(2);
+      console.log(`目前在 ${cur}，為符合 Git Flow 規範，嘗試切換至 develop 後建立或切換至 ${featBranch}...`);
+      try {
+        gitLoud(['checkout', 'develop']);
+        create(featBranch);
+      } catch {
+        console.warn('WARN: 因工作區變更無法切換至 develop，改由目前節點建立分支...');
+        create(featBranch);
+      }
+    } else {
+      console.log(`尚未存在 develop 分支，先建立 develop 後切出 ${featBranch}...`);
+      create('develop');
+      create(featBranch);
     }
-    create('develop');
-    create(`feature/${name}`);
   }
-} else if (cur === 'develop') {
+} else if (curLower === 'develop') {
   if (kind === 'hotfix') {
     console.warn(
       'WARN: 偵測到 hotfix 意圖，但目前在 develop。若需上線緊急修正，建議手動切到 main 後重試。此次以 feature 分支處理。'
     );
   }
-  create(`feature/${name}`);
+  create(targetBranch('feature', name));
 } else if (cur.startsWith('release/') || cur.startsWith('hotfix/')) {
   console.log(`已在 ${cur}，Git Flow 允許直接提交。`);
+} else if (cur === 'HEAD') {
+  console.warn('WARN: 目前處於分離標頭（Detached HEAD）狀態。');
+  const branchName = targetBranch(kind, name);
+  console.log(`從目前節點建立分支 ${branchName}...`);
+  create(branchName);
 } else {
   console.log(`已在分支 ${cur}，直接使用該分支提交。`);
 }
