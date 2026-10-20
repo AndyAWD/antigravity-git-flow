@@ -23,7 +23,7 @@ agy plugin install https://github.com/AndyAWD/antigravity-git-flow
 3. **Strict Conventional Commits Compliance**: Built-in prompt rules ensure consistent `<type>[scope]: <description>` structure and eliminate model hallucinations.
 4. **Multi-Task Auto Splitting**: Automatically splits unrelated working tree changes into separate logical commits.
 5. **Standardized Bilingual Documentation & Releases**: Integrated multi-language PR templates, bilingual GitHub Release changelogs, and automated README generation.
-6. **Dedicated Co-Author Attribution**: Every automated commit includes Google Antigravity co-author attribution.
+6. **Dedicated Generator Attribution**: Every automated commit includes AI generator attribution (`Generated-by`).
 
 ## Plugin Management
 
@@ -111,7 +111,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 - **How It Works**:
   1. Smart untracked files review: Inspects file contents, explains functionality, groups files by type, and prompts the user via multi-select to choose which files to track, discard, or ignore.
   2. Stages selected changes and analyzes diffs, splitting multi-task changes into discrete logical commits.
-  3. Generates Conventional Commit messages with Google Antigravity co-author trailer.
+  3. Generates Conventional Commit messages with AI generator trailer (`Generated-by: <model> (<thinking>)`, fallback to `Generated-by: Google Antigravity`).
 
 ### 3. Branch Merge (Merge)
 
